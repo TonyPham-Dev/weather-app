@@ -1,13 +1,87 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 100vh;
+  background-image: url('https://cdn.pixabay.com/photo/2013/07/13/12/08/background-159244_960_720.png');
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+}
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  width: 550px;
+  height: 700px;
+  border-radius:20px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  background-image: url('https://cdn2.vectorstock.com/i/1000x1000/07/81/seamless-weather-forecast-background-vector-2000781.jpg');
+}
+.content-Top {
+  text-align: center;
+  margin-top: 30px;
+}
+.input_search {
+  padding:10px;
+  border:none;
+  border-bottom:1px solid rgb(139, 138, 138);
+  background-color: transparent;
+  outline: none;
+  color:#fff;
+}
+.btn_search {
+  padding:10px;
+  margin-left: 10px;
+  border-radius: 10px;
+  color:#fff;
+  background-color:rgb(54, 192, 197);
+  outline:none;
+  border:none;
+  cursor: pointer;
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
+::placeholder {
+  color:#fff;
+}
+.parameter {
+  text-align: center;
+  margin-top: 50px;
+  color:#fff;
+}
+.parameter h4 {
+  font-size: 25px;
+  margin: 10px;
+}
+.temperature {
+  font-size: 100px;
+  margin: 0;
+  position: relative;
+}
+.temperature::after {
+  content: "o";
+  position:absolute;
+  top: 0px;
+  font-size: 30px;
+}
+.footer_weather {
+  position: absolute;
+  bottom: 0px;
+  height: 150px;
+  width:100%;
+  border-top: 1px solid rgb(110, 108, 108);
+  border-radius: 0px 0px 10px 10px;
+  color:#fff;
+}
+.sun {
+  display: flex;
+  padding:20px;
+  justify-content: space-between;
+  text-align: center;
+}
+.weather_wild {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  padding:20px 50px;
 }
