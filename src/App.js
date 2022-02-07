@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 // import Moment from "moment";
 const DEFAULT_VALUE = "~~";
 const API_KEY = "28c7ac69b7797bc3c50017e561b85db2";
-const DEFAULT_ICON = "http://openweathermap.org/img/wn/10d@2x.png";
 const VALUE_DEFAULT = "Hai Duong";
 function App() {
   const [valueInput, setValueInput] = useState("");
@@ -26,27 +25,30 @@ function App() {
   };
 
   useEffect(async () => {
-    await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${
-        saveValue || VALUE_DEFAULT
-      }&appid=${API_KEY}&lang=vi`
-    )
-      .then((response) => response.json())
-      .then((dataWeather) => {
-        setSky(dataWeather.weather[0].description);
-        setIcon(dataWeather.weather[0].icon);
-        setTemp(Math.floor(dataWeather.main.temp / 10));
-        // setSunrise(
-        //   Moment(dataWeather && dataWeather.sys.sunrise).format("H:mm")
-        // );
-        // setSunSet(Moment(dataWeather && dataWeather.sys.sunset).format("H:mm"));
-        setHumidity(dataWeather.main.humidity);
-        setWind((dataWeather.wind.speed * 3.6).toFixed(1));
-        setData(dataWeather);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    async function fetchMyAPI() {
+      await fetch(
+        `https://api.openweathermap.org/data/2.5/weather?q=${
+          saveValue || VALUE_DEFAULT
+        }&appid=${API_KEY}&lang=vi`
+      )
+        .then((response) => response.json())
+        .then((dataWeather) => {
+          setSky(dataWeather.weather[0].description);
+          setIcon(dataWeather.weather[0].icon);
+          setTemp(Math.floor(dataWeather.main.temp / 10));
+          // setSunrise(
+          //   Moment(dataWeather && dataWeather.sys.sunrise).format("H:mm")
+          // );
+          // setSunSet(Moment(dataWeather && dataWeather.sys.sunset).format("H:mm"));
+          setHumidity(dataWeather.main.humidity);
+          setWind((dataWeather.wind.speed * 3.6).toFixed(1));
+          setData(dataWeather);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+    fetchMyAPI()
   }, [saveValue]);
 
   return (
@@ -72,7 +74,7 @@ function App() {
         <img
           className=""
           src={
-            `http://openweathermap.org/img/wn/${icon}@2x.png` || DEFAULT_ICON
+            `http://openweathermap.org/img/wn/${icon}@2x.png` || null
           }
         />
         <h1 className="temperature">{temp}</h1>
