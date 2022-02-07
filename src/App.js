@@ -11,8 +11,8 @@ function App() {
   const [sky, setSky] = useState("");
   const [icon, setIcon] = useState();
   const [temp, setTemp] = useState("");
-  const [sunrise, setSunrise] = useState("");
-  const [sunset, setSunSet] = useState("");
+  // const [sunrise, setSunrise] = useState("");
+  // const [sunset, setSunSet] = useState("");
   const [humidity, setHumidity] = useState("");
   const [winds, setWind] = useState("");
 
@@ -82,11 +82,11 @@ function App() {
         <div className="sun">
           <div className="weather_sun">
             <h3 style={{ margin: "0" }}>Mặt trời mọc</h3>
-            <p style={{ height: "0", margin: "0" }}>{sunrise}</p>
+            {/* <p style={{ height: "0", margin: "0" }}>{sunrise}</p> */}
           </div>
           <div className="weather_sun">
             <h3 style={{ margin: "0" }}>Mặt trời Lặn</h3>
-            <p style={{ height: "0", margin: "0" }}>{sunset}</p>
+            {/* <p style={{ height: "0", margin: "0" }}>{sunset}</p> */}
           </div>
         </div>
 
