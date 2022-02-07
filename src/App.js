@@ -31,7 +31,7 @@ function App() {
           saveValue || VALUE_DEFAULT
         }&appid=${API_KEY}&lang=vi`
       )
-        .then((response) => await response.json())
+        .then((response) => response.json())
         .then((dataWeather) => {
           setSky(dataWeather.weather[0].description);
           setIcon(dataWeather.weather[0].icon);
