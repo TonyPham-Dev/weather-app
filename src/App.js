@@ -5,7 +5,7 @@ const API_KEY = "28c7ac69b7797bc3c50017e561b85db2";
 const VALUE_DEFAULT = "Hai Duong";
 function App() {
   const [valueInput, setValueInput] = useState("");
-  const [saveValue, setSaveValue] = useState([]);
+  const [saveValue, setSaveValue] = useState();
   const [data, setData] = useState("");
   const [sky, setSky] = useState("");
   const [icon, setIcon] = useState();
@@ -24,29 +24,28 @@ function App() {
     setValueInput("");
   };
 
-  useEffect(async () => {
+  useEffect(() => {
     async function fetchMyAPI() {
-      await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${
-          saveValue || VALUE_DEFAULT
-        }&appid=${API_KEY}&lang=vi`
-      )
-        .then((response) => response.json())
-        .then((dataWeather) => {
-          setSky(dataWeather.weather[0].description);
-          setIcon(dataWeather.weather[0].icon);
-          setTemp(Math.floor(dataWeather.main.temp / 10));
-          // setSunrise(
-          //   Moment(dataWeather && dataWeather.sys.sunrise).format("H:mm")
-          // );
-          // setSunSet(Moment(dataWeather && dataWeather.sys.sunset).format("H:mm"));
-          setHumidity(dataWeather.main.humidity);
-          setWind((dataWeather.wind.speed * 3.6).toFixed(1));
-          setData(dataWeather);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      try {
+        let response = await fetch(
+          `https://api.openweathermap.org/data/2.5/weather?q=${
+            saveValue || VALUE_DEFAULT
+          }&appid=${API_KEY}&lang=vi`
+        );
+        response = await response.json();
+        setSky(response.weather[0].description);
+        setIcon(response.weather[0].icon);
+        setTemp(Math.floor(response.main.temp / 10));
+        // setSunrise(
+        //   Moment(response && response.sys.sunrise).format("H:mm")
+        // );
+        // setSunSet(Moment(response && response.sys.sunset).format("H:mm"));
+        setHumidity(response.main.humidity);
+        setWind((response.wind.speed * 3.6).toFixed(1));
+        setData(response);
+      } catch (error) {
+        alert(error);
+      }
     }
     fetchMyAPI();
   }, [saveValue]);
