@@ -31,7 +31,7 @@ function App() {
           saveValue || VALUE_DEFAULT
         }&appid=${API_KEY}&lang=vi`
       )
-        .then((response) => response.json())
+        .then((response) => await response.json())
         .then((dataWeather) => {
           setSky(dataWeather.weather[0].description);
           setIcon(dataWeather.weather[0].icon);
@@ -48,7 +48,7 @@ function App() {
           console.log(err);
         });
     }
-    fetchMyAPI()
+    fetchMyAPI();
   }, [saveValue]);
 
   return (
@@ -73,9 +73,8 @@ function App() {
 
         <img
           className=""
-          src={
-            `http://openweathermap.org/img/wn/${icon}@2x.png` || null
-          }
+          src={`http://openweathermap.org/img/wn/${icon}@2x.png` || null}
+          alt="description of image"
         />
         <h1 className="temperature">{temp}</h1>
       </div>
