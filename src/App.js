@@ -71,9 +71,9 @@ function App() {
         </p>
 
         <img
-          className=""
-          src={`http://openweathermap.org/img/wn/${icon}@2x.png` || null}
-          alt="description of image"
+          src={`http://openweathermap.org/img/wn/${icon}@2x.png`}
+          alt=""
+          
         />
         <h1 className="temperature">{temp}</h1>
       </div>
